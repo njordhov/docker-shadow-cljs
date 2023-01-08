@@ -1,0 +1,16 @@
+;; shadow-cljs configuration
+{:deps {:aliases [:shadow]}
+ :nrepl {:port 9090}
+ :socket-repl {:port 9099}
+ :builds
+ {:script 
+  {:target :node-script
+   :devtools {:autoload true
+              :ignore-warnings false}
+   :main script.core/main
+   :dev {:output-to "out/script.js"}
+   :output-to "script.js"}
+  :test
+  {:target :node-test
+   :output-to "out/node-tests.js"
+   :autorun true}}}
