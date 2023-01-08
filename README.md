@@ -1,10 +1,10 @@
 # Shadow CLJS in Docker
 
-Conveniently develop with [shadow-cljs](https://shadow-cljs.github.io/docs/UsersGuide.html) without having to install Clojure, JVM or npm on your local machine. The provided Docker image includes all necessary dependencies to develop with ClojureScript.
+Conveniently develop [ClojureScript](https://clojurescript.org/) with [Shadow CLJS](https://shadow-cljs.github.io/docs/UsersGuide.html) without having to install Clojure, JVM or npm on your local machine. The provided Docker image includes all necessary dependencies to develop with ClojureScript.
 
 ## Benefits
 
-With Docker, you can quickly and easily set up a development environment for shadow-cljs projects:
+Use Docker to quickly and easily set up a development environment for shadow-cljs projects:
 
 - Lower the barrier to develop and contribute to your ClojureScript projects
 - Avoid the complications of installing a build environment on your local system
