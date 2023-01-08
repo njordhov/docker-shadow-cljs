@@ -43,7 +43,7 @@ docker build -t docker-shadow-cljs .
 To start the shadow-cljs development server, run the following command in a shell:
 
 ```bash
-docker run --name server -it --rm -v `pwd`:/home -p 9630:9630 -p 9090:9090 docker-shadow-cljs
+docker run --name server -it -v `pwd`:/home -p 9630:9630 -p 9090:9090 docker-shadow-cljs
 ```
 
 This command will start a new Docker container named "server" and run the docker-shadow-cljs image. It maps ports from the container to the host machine, mounts the current working directory (pwd) to the /home directory in the container, and starts the container in interactive mode. Port 9090 provides an _nrepl_ interface that can be connected to from a REPL.
@@ -65,7 +65,8 @@ docker exec -it server shadow-cljs watch script
 
 ### Launch the Development Runtime
 
-To run the compiled `:script` build, use the following command:
+To run the compiled `:script` build, use the following command with the `:output-to`
+pathname from _shadow-cljs.edn_:
 
 ```bash
 docker exec -it server node out/script.js
@@ -102,7 +103,7 @@ This command will start a new Docker container with the docker-shadow-cljs image
 ### Stopping and Removing the Server
 
 Use the Docker Desktop software to stop the shadow-cljs development server and 
-remove the Docker container and eventually image. 
+remove the Docker container. 
 
 Alternatively, you can use the following commands:
 
@@ -144,13 +145,13 @@ This will also automatically start a container for the Shadow CLJS server. To us
 Compose can also run other shadow-cljs commands in their own container. 
 For example, this will start a REPL:
 
-```
+```bash
 docker compose run -it --rm shadow-cljs cljs-repl script
 ```
 
 ### Configuration
 
-Docker compose uses the shadow-cljs.edn configuration file, which can be placed in the root directory of your project. You can edit this file to specify your project's dependencies, build configurations, and other options.
+Docker compose uses the shadow-cljs.edn configuration file, which can be placed in the root directory of your project. You can edit this file to specify your project's requirements, build configurations, and other options.
 
 For more information on how to use shadow-cljs, see the 
 [shadow-cljs documentation](https://shadow-cljs.github.io/docs/UsersGuide.html).

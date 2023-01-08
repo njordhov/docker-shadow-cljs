@@ -1,4 +1,6 @@
-(ns script.core)
+(ns script.core
+  (:require 
+   ["ws"]))
 
 (defonce args-var (volatile! nil))
 

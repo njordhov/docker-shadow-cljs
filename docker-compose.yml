@@ -28,7 +28,7 @@ services:
       - .:/home
       - m2:/root/.m2
       - .cpcache:/.cpcache
-      - .shadow-cljs/.shadow-cljs
+      - .shadow-cljs:/.shadow-cljs
     entrypoint: 
       - npx
       - shadow-cljs 
@@ -47,7 +47,7 @@ services:
       - .:/home
       - m2:/root/.m2
       - .cpcache:/.cpcache
-      - .shadow-cljs/.shadow-cljs
+      - .shadow-cljs:/.shadow-cljs
     entrypoint: 
       - npx
       - shadow-cljs
