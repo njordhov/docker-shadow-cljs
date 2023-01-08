@@ -1,7 +1,6 @@
 # Shadow CLJS in Docker
 
-Conveniently develop with [shadow-cljs](https://shadow-cljs.github.io/docs/UsersGuide.html) without having to install npm, the Java Virtual Machine (JVM), or Clojure on your local machine. The provided Docker image includes all necessary dependencies 
-to develop with ClojureScript.
+Conveniently develop with [shadow-cljs](https://shadow-cljs.github.io/docs/UsersGuide.html) without having to install Clojure, JVM or npm on your local machine. The provided Docker image includes all necessary dependencies to develop with ClojureScript.
 
 ## Benefits
 
@@ -30,12 +29,13 @@ and use the instructions below to experiment.
 
 Get started with shadow-cljs in Docker by building the Docker image and starting a shadow-cljs development server. You can then use the server to build and run your ClojureScript projects, start a ClojureScript REPL, and more. The server can be configured to watch your code for changes and automatically rebuild your projects, making it easy to iterate and develop your code. Follow the steps below to get started.
  
-### Prebuild the Docker Image
+### Pull the Docker Image
 
-To prebuild the Docker image and alias it as `docker-shadow-cljs`, run the following command:
+To pull the latest Docker image and alias it as `docker-shadow-cljs`, run the following commands:
 
 ```bash 
-docker build -t docker-shadow-cljs .
+docker pull ghcr.io/njordhov/docker-shadow-cljs
+docker image tag ghcr.io/njordhov/clariform docker-shadow-cljs
 ```
 
 ### Start the Server
