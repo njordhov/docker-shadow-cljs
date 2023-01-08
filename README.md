@@ -1,114 +1,143 @@
 # Shadow CLJS in Docker
 
-Run [shadow-cljs](https://shadow-cljs.github.io/docs/UsersGuide.html) with Docker.
+Conveniently develop with [shadow-cljs](https://shadow-cljs.github.io/docs/UsersGuide.html) without having to install npm, the Java Virtual Machine (JVM), or Clojure on your local machine. The provided Docker image includes all necessary dependencies 
+to develop with ClojureScript.
 
-This repo contains a Docker image for running a shadow-cljs dev server and commands. The only prerequisite is Docker, with no need to install npm, JVM, or Clojure.
+## Benefits
 
-The docker-shadow-cljs image for Docker provides a convenient and consistent way to run shadow-cljs without having to install npm, the Java Virtual Machine (JVM), or Clojure on your local machine. The only prerequisite is Docker, with no need to install npm, JVM, or Clojure. All of the requirements are packaged inside the Docker container, making it it easy to run shadow-cljs in any environment that supports Docker.
+With Docker, you can quickly and easily set up a development environment for shadow-cljs projects:
+
+- Lower the barrier to develop and contribute to your ClojureScript projects
+- Avoid the complications of installing a build environment on your local system
+- Ensure that the development environment is consistent and predictable
+- Simplify cleanup after development by avoiding polluting the host filesystem
 
 ## Prerequisites
 
 [![Docker](https://badgen.net/badge/icon/docker?icon=docker&label)](https://https://docker.com/)
 
-[Docker](https://https://docker.com/) must be [installed](https://docs.docker.com/engine/install/) and running.
+In order to use this repository, you will need to have [Docker](https://https://docker.com/) installed and running on your machine. Follow the instructions at [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/) to install Docker.
+
+Once Docker is installed and running, you will be ready to build and run the Docker image using the steps described in the following sections.
+
+## Reference Project 
+
+The repository contains a reference project that can be used to get familiar 
+using Shadow CLJS with Docker. Optionally clone the repository, cd into the directory 
+and use the instructions below to experiment.
 
 ## Quick Start
 
-The Dockerfile can be used to start a shadow-cljs development server and run various shadow-cljs commands. You can use the server to build and run your ClojureScript projects, start a ClojureScript REPL, and more. The server can be configured to watch your code for changes and automatically rebuild your projects, making it easy to iterate and develop your code.
+Get started with shadow-cljs in Docker by building the Docker image and starting a shadow-cljs development server. You can then use the server to build and run your ClojureScript projects, start a ClojureScript REPL, and more. The server can be configured to watch your code for changes and automatically rebuild your projects, making it easy to iterate and develop your code. Follow the steps below to get started.
  
-### Prebuilding Image
+### Prebuild the Docker Image
 
-Prebuild the Docker image and alias it as `docker-shadow-cljs`. To do this, run the following command:
+To prebuild the Docker image and alias it as `docker-shadow-cljs`, run the following command:
 
-```
+```bash 
 docker build -t docker-shadow-cljs .
 ```
 
-### Start a Server
+### Start the Server
 
-Run the following command in a shell to start the server:
+To start the shadow-cljs development server, run the following command in a shell:
 
-```
+```bash
 docker run --name server -it --rm -v `pwd`:/home -p 9630:9630 -p 9090:9090 docker-shadow-cljs
 ```
 
-This will start a new Docker container named "server" and run the `docker-shadow-cljs` image. It maps ports 9630 and 9090 from the container to the host machine, mounts the current working directory (`pwd`) to the `/home` directory in the container, and starts the container in interactive mode.
+This command will start a new Docker container named "server" and run the docker-shadow-cljs image. It maps ports from the container to the host machine, mounts the current working directory (pwd) to the /home directory in the container, and starts the container in interactive mode. Port 9090 provides an _nrepl_ interface that can be connected to from a REPL.
 
-### Open the Dashboard
+### Open the Shadow CLJS Monitor
 
-Once the container is running, you can open the shadow-cljs dashboard in your web browser:
+Once the container is running, you can access the shadow-cljs monitor in your web browser at http://localhost:9630/builds. From the monitor, you can compile the project, enable a watch process for live reloading of automatically compiled code changes, run unit testing,
+or generate an executable release.
 
-http://localhost:9630/dashboard.
+Alternatively, execute these from the command line, as described in the following sections.
 
-From the browser dashboard you can compile the project, enable a watch process for 
-live reloading of automatically compiled code changes, and run unit testing.
+### Activate Live Reloading
 
-### Executing Commands
+Assuming the shadow-cljs configuration in the current directory has a build named `:script` with `:target :node-script` and `:output-to "script.js"`, you can execute the following command on the server to start a development process that watches for changes to your code and automatically rebuilds the `:script` build when changes are detected:
 
-Assuming the shadow-cljs configuration in the current directory has a build named `:script` with `:target :node-script` and `:output-to "script.js"`, here are some examples of commands you can execute on the server:
-
-```
+```bash
 docker exec -it server shadow-cljs watch script
 ```
 
-This will start a development process that watches for changes to your code and automatically rebuilds the _script_ build when changes are detected.
+### Launch the Development Runtime
 
-### Launch Development Runtime
+To run the compiled `:script` build, use the following command:
 
-To run the compiled _script_ build, use the following command:
-
-```
+```bash
 docker exec -it server node out/script.js
 ```
 
-### Start a REPL
+### Start a ClojureScript REPL
 
-To start a ClojureScript REPL for the `script` build, use the following command:
+To start a ClojureScript REPL for the `:script` build, use the following command:
 
-```
+```bash
 docker exec -it server shadow-cljs cljs-repl script
 ```
 
-### Open a Shell
+### Open a Shell Prompt
 
 To open a shell prompt in the running container, use the following command:
 
-```
+```bash
 docker exec -it server sh
 ```
 
-This allows you to run other commands or inspect the container's filesystem.
+This will allow you to run other commands or inspect the container's filesystem.
 
-### Running Commands in a Separate Container
+### Run Shadow CLJS Commands in a Separate Container
 
 Instead of executing shadow-cljs commands on the server container, you can alternatively run them in their own container. To do this, run the `docker-shadow-cljs` image with the shadow-cljs arguments at the end of the command line:
 
-```
+```bash
 docker run -it --rm --network=host -v `pwd`:/home docker-shadow-cljs cljs-repl script
 ```
 
-This will start a new Docker container with the `docker-shadow-cljs` image and run the `cljs-repl` command for the `script` build.
+This command will start a new Docker container with the docker-shadow-cljs image and run the cljs-repl command for the :script build.
 
-## Using Docker Compose 
+### Stopping and Removing the Server
 
-Docker Compose runs predefined services, lowering the barrier to contribute to
-a projects. The `docker-compose.yml` file configures
-services to run shadow-cljs. It encapsulates cache directories in the container to
-ease cleanup and avoid polluting the host filesystem.
+Use the Docker Desktop software to stop the shadow-cljs development server and 
+remove the Docker container and eventually image. 
+
+Alternatively, you can use the following commands:
+
+```bash
+# Stop the server
+docker stop server
+
+# Remove the container
+docker rm server
+
+# Remove the image
+docker rmi docker-shadow-cljs
+```
+
+These commands will stop the "server" container, remove the "server" container and delete any data stored in the container, and remove the "docker-shadow-cljs" image and delete any data stored in the image.
+
+## Using Docker Compose
+
+Docker Compose runs containers defined in a configuration file. The `docker-compose.yml` file in this repository defines services for running shadow-cljs, and also encapsulates cache directories within the container to help keep the host filesystem clean and uncluttered. 
+
+The goal is that you can drop this configuration file by itself in a 
+clojurescript project. This lowers the barrier for participation and allows 
+anyone to easily join the development process.
 
 ### Starting a Watcher
 
-To start a watcher with compose, which will recompile whenever any code files change, use the 
-following command (with `-d` optionally to run it in the background):
+You can use Docker Compose to start a watcher that will automatically recompile your code whenever any files change. To do this, run the following command (with `-d` optionally to run it in the background):
 
-```
+```bash 
 docker compose run --rm shadow-cljs watch script
 ```
 
-Wait until the watcher has completed the build before proceeding.
-It automatically starts a container for the Shadow CLJS server.
-Follow the steps from Quick Start to open the dashboard, start 
-a development runtime and execute commands on the server.
+Wait for the watcher to complete the initial build before proceeding. 
+
+This will also automatically start a container for the Shadow CLJS server. To use the server, follow the steps in the Quick Start section to open the dashboard, start a development runtime, and execute commands.
 
 ### Run Commands
 
@@ -118,6 +147,14 @@ For example, this will start a REPL:
 ```
 docker compose run -it --rm shadow-cljs cljs-repl script
 ```
+
+### Configuration
+
+Docker compose uses the shadow-cljs.edn configuration file, which can be placed in the root directory of your project. You can edit this file to specify your project's dependencies, build configurations, and other options.
+
+For more information on how to use shadow-cljs, see the 
+[shadow-cljs documentation](https://shadow-cljs.github.io/docs/UsersGuide.html).
+
 
 
 
