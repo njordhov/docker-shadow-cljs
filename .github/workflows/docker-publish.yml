@@ -14,6 +14,11 @@ on:
     tags: [ 'v*.*.*' ]
   pull_request:
     branches: [ "main" ]
+  workflow_dispatch:
+    branches: [ "main" ]
+    # tags: [ 'v*.*.*' ]
+    tags: [ "latest" ]
+
 
 env:
   # Use docker.io for Docker Hub if empty
