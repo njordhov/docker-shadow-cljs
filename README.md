@@ -20,6 +20,8 @@ Develop [ClojureScript](https://clojurescript.org/) projects with [Shadow CLJS](
 - Improve security by isolating the development environment from your system 
 - Simplify cleanup after development by avoiding pollution of the host filesystem
 
+You can provide these benefits for any ClojureScript project by copying the [docker-compose.yml](docker-compose.yml) configuration file into its repository.
+
 ## Prerequisites
 
 [![Docker](https://badgen.net/badge/icon/docker?icon=docker&label)](https://https://docker.com/)
@@ -144,10 +146,6 @@ These commands will stop the "server" container, remove the "server" container a
 ## Using Docker Compose
 
 Docker Compose runs containers defined in a configuration file. The `docker-compose.yml` file in this repository defines services for running shadow-cljs, and also encapsulates cache directories within the container to help keep the host filesystem clean and uncluttered. 
-
-The goal is that you can drop this configuration file by itself in a 
-clojurescript project. This lowers the barrier for participation and allows 
-anyone to easily join the development process.
 
 ### Starting a Watcher
 
