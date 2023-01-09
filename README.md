@@ -13,11 +13,11 @@ Develop [ClojureScript](https://clojurescript.org/) projects with [Shadow CLJS](
 
 ## Benefits
 
-- Quickly and easily set up a development environment for Shadow CLJS projects
+- Quickly and easily set up a Shadow CLJS based development environment
 - Lower the barrier to developing and contributing to ClojureScript projects
 - Avoid the hassle of installing a build environment on your local system
 - Ensure a consistent and predictable development environment
-- Improve security by isolating the development environment from your system. 
+- Improve security by isolating the development environment from your system 
 - Simplify cleanup after development by avoiding pollution of the host filesystem
 
 ## Prerequisites
