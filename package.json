@@ -1,6 +1,6 @@
 {
-  "name": "my-project",
-  "version": "0.0.1",
+  "name": "docker-shadow-cljs",
+  "version": "0.2",
   "private": true,
   "devDependencies": {
     "shadow-cljs": "2.20.17"
