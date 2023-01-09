@@ -44,7 +44,7 @@ open http://localhost:9630/builds
 
 From the monitor, you can compile the project, enable a watch process for live reloading of automatically compiled code changes, enable unit testing, and generate an executable release.
 
-Stop the server from the Docker Desktop application or by typing CTRL-d in the terminal.
+Stop the server from the [Docker Desktop](https://docs.docker.com/desktop/) application or by typing CTRL-d in the terminal.
 
 ## Usage
 
