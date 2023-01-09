@@ -1,4 +1,4 @@
-FROM clojure:temurin-8-tools-deps
+FROM clojure:temurin-17-tools-deps-bullseye
 
 MAINTAINER "terje@in-progress.com"
 
