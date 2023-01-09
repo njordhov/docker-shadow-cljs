@@ -3,7 +3,7 @@
 Develop [ClojureScript](https://clojurescript.org/) projects with [Shadow CLJS](https://shadow-cljs.github.io/docs/UsersGuide.html) without having to install Clojure, JVM, or npm on your local machine. The provided Docker image includes all the necessary dependencies for ClojureScript development.
 
 - [x] [Reference project](shadow-cljs.edn) for shadow-cljs
-- [x] [Dockerfile](Dockerfile) building image to run shadow-cljs
+- [x] [Dockerfile](Dockerfile) defiing container to run shadow-cljs
 - [x] Docker [compose configuration](docker-compose.yml) 
 - [x] Docker image published at https://ghcr.io/njordhov/docker-shadow-cljs
 - [ ] Support for Docker [Dev Environments](https://docs.docker.com/desktop/dev-environments/)
