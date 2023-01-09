@@ -1,31 +1,52 @@
-# Shadow CLJS in Docker
+# Shadow CLJS with Docker
 
-Conveniently develop [ClojureScript](https://clojurescript.org/) with [Shadow CLJS](https://shadow-cljs.github.io/docs/UsersGuide.html) without having to install Clojure, JVM or npm on your local machine. The provided Docker image includes all necessary dependencies to develop with ClojureScript.
+Develop [ClojureScript](https://clojurescript.org/) projects with [Shadow CLJS](https://shadow-cljs.github.io/docs/UsersGuide.html) without having to install Clojure, JVM, or npm on your local machine. The provided Docker image includes all the necessary dependencies for ClojureScript development.
+
+- [x] [Reference project](shadow-cljs.edn) for shadow-cljs
+- [x] [Dockerfile](Dockerfile) building image to run shadow-cljs
+- [x] Docker [compose configuration](docker-compose.yml) 
+- [x] Docker image published at https://ghcr.io/njordhov/docker-shadow-cljs
+- [ ] Support for Docker [Dev Environments](https://docs.docker.com/desktop/dev-environments/)
+
+[![GitHub release](https://img.shields.io/github/release/njordhov/docker-shadow-cljs.svg)](https://GitHub.com/njordhov/docker-shadow-cljs/releases/)
+[![Docker Shadow CLJS](https://github.com/njordhov/docker-shadow-cljs/actions/workflows/main.yml/badge.svg)](https://github.com/njordhov/docker-shadow-cljs/actions/workflows/main.yml)
 
 ## Benefits
 
-Use Docker to quickly and easily set up a development environment for shadow-cljs projects:
-
-- Lower the barrier to develop and contribute to your ClojureScript projects
-- Avoid the complications of installing a build environment on your local system
-- Ensure that the development environment is consistent and predictable
-- Simplify cleanup after development by avoiding polluting the host filesystem
+- Quickly and easily set up a development environment for Shadow CLJS projects
+- Lower the barrier to developing and contributing to ClojureScript projects
+- Avoid the hassle of installing a build environment on your local system
+- Ensure a consistent and predictable development environment
+- Improve security by isolating the development environment from your system. 
+- Simplify cleanup after development by avoiding pollution of the host filesystem
 
 ## Prerequisites
 
 [![Docker](https://badgen.net/badge/icon/docker?icon=docker&label)](https://https://docker.com/)
 
-In order to use this repository, you will need to have [Docker](https://https://docker.com/) installed and running on your machine. Follow the instructions at [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/) to install Docker.
-
-Once Docker is installed and running, you will be ready to build and run the Docker image using the steps described in the following sections.
-
-## Reference Project 
-
-The repository contains a reference project that can be used to get familiar 
-using Shadow CLJS with Docker. Optionally clone the repository, cd into the directory 
-and use the instructions below to experiment.
+[Docker](https://https://docker.com/) must be installed and running on your machine. Follow the instructions at [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/) to install Docker.
 
 ## Quick Start
+
+Clone this repository and navigate to the directory.
+
+Start a Shadow CLJS server in a Docker container:
+
+```bash
+docker compose run --rm shadow-cljs server
+```
+
+Wait for the server to start, then open the Shadow CLJS monitor in a web browser:
+
+```bash
+open http://localhost:9630/builds
+```
+
+From the monitor, you can compile the project, enable a watch process for live reloading of automatically compiled code changes, enable unit testing, and generate an executable release.
+
+Stop the server from the Docker Desktop application or by typing CTRL-d in the terminal.
+
+## Usage
 
 Get started with shadow-cljs in Docker by building the Docker image and starting a shadow-cljs development server. You can then use the server to build and run your ClojureScript projects, start a ClojureScript REPL, and more. The server can be configured to watch your code for changes and automatically rebuild your projects, making it easy to iterate and develop your code. Follow the steps below to get started.
  
