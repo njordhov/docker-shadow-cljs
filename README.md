@@ -9,7 +9,7 @@ Develop [ClojureScript](https://clojurescript.org/) projects with [Shadow CLJS](
 - [ ] Support for Docker [Dev Environments](https://docs.docker.com/desktop/dev-environments/)
 
 [![GitHub release](https://img.shields.io/github/release/njordhov/docker-shadow-cljs.svg)](https://GitHub.com/njordhov/docker-shadow-cljs/releases/)
-[![Docker Shadow CLJS](https://github.com/njordhov/docker-shadow-cljs/actions/workflows/main.yml/badge.svg)](https://github.com/njordhov/docker-shadow-cljs/actions/workflows/main.yml)
+[![Docker Shadow CLJS](https://github.com/njordhov/docker-shadow-cljs/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/njordhov/docker-shadow-cljs/actions/workflows/docker-publish.yml)
 
 ## Benefits
 
