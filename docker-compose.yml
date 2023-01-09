@@ -10,7 +10,7 @@ networks:
         
 services:          
   server:
-    build: .
+    build: ghcr.io/njordhov/docker-shadow-cljs
     container_name: server  
     working_dir: /home
     networks:
@@ -24,6 +24,7 @@ services:
       - "9630:9630" 
       - "9090:9090"
       - "9099:9099"
+      - "8080:8080"
     volumes:
       - .:/home
       - m2:/root/.m2
@@ -35,7 +36,7 @@ services:
       - server
   
   shadow-cljs:
-    build: .
+    build: ghcr.io/njordhov/docker-shadow-cljs
     depends_on:
       server:
         condition: service_healthy
