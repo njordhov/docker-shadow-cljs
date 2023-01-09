@@ -36,7 +36,7 @@ Start a Shadow CLJS server in a Docker container:
 docker compose run --rm shadow-cljs server
 ```
 
-Wait for the server to start, then open the Shadow CLJS monitor in a web browser:
+Wait for the server to start, then [open the Shadow CLJS monitor](http://localhost:9630/builds) in a web browser:
 
 ```bash
 open http://localhost:9630/builds
