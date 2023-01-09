@@ -14,13 +14,13 @@ Develop [ClojureScript](https://clojurescript.org/) projects with [Shadow CLJS](
 ## Benefits
 
 - Quickly and easily set up a Shadow CLJS based development environment
-- Lower the barrier to developing and contributing to ClojureScript projects
-- Avoid the hassle of installing a build environment on your local system
+- Avoid having to install a build environment in your file system
+- Lower the barrier for contributing to ClojureScript projects
 - Ensure a consistent and predictable development environment
 - Improve security by isolating the development environment from your system 
 - Simplify cleanup after development by avoiding pollution of the host filesystem
 
-You can provide these benefits for any ClojureScript project by copying the [docker-compose.yml](docker-compose.yml) configuration file into its repository.
+You can provide any ClojureScript project with these benefits by copying the [docker-compose.yml](docker-compose.yml) configuration file into its repository.
 
 ## Prerequisites
 
