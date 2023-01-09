@@ -1,4 +1,4 @@
-FROM clojure:tools-deps-focal
+FROM clojure:temurin-8-tools-deps
 
 MAINTAINER "terje@in-progress.com"
 
