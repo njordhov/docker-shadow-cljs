@@ -10,16 +10,15 @@ networks:
         
 services:          
   server:
-    image: ghcr.io/njordhov/docker-shadow-cljs
-    build: .
-    container_name: server  
-    working_dir: /home
+    container_name: server 
+    image: ghcr.io/njordhov/docker-shadow-cljs:v0.2
+    build: . 
     networks:
       - server
     healthcheck:
       test: ["CMD", "curl", "--fail", "http://localhost:9630"]
-      interval: 5s
-      timeout: 30s
+      interval: 10s
+      timeout: 5s
       retries: 12
     ports:
       - "9630:9630" 
@@ -31,13 +30,14 @@ services:
       - m2:/root/.m2
       - .cpcache:/tmp/.cpcache
       - .shadow-cljs:/tmp/.shadow-cljs
+    working_dir: /home
     entrypoint: 
       - npx
       - shadow-cljs 
       - server
   
   shadow-cljs:
-    image: ghcr.io/njordhov/docker-shadow-cljs
+    image: ghcr.io/njordhov/docker-shadow-cljs:v0.2
     build: .
     depends_on:
       server:
@@ -49,8 +49,8 @@ services:
     volumes:
       - .:/home
       - m2:/root/.m2
-      - .cpcache:/.cpcache
-      - .shadow-cljs:/.shadow-cljs
+      - .cpcache:/tmp/.cpcache
+      - .shadow-cljs:/tmp/.shadow-cljs
     entrypoint: 
       - npx
       - shadow-cljs
