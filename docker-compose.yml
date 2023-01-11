@@ -32,9 +32,9 @@ services:
       - .shadow-cljs:/tmp/.shadow-cljs
     working_dir: /home
     entrypoint: 
-      - npx
-      - shadow-cljs 
-      - server
+      - /bin/bash 
+      - -c 
+      - 'test -f shadow-cljs.edn || npx shadow-cljs init && npx shadow-cljs server'      
   
   shadow-cljs:
     image: ghcr.io/njordhov/docker-shadow-cljs:v0.2
