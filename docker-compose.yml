@@ -11,7 +11,7 @@ networks:
 services:          
   server:
     container_name: server 
-    image: ghcr.io/njordhov/docker-shadow-cljs:v0.2
+    image: ghcr.io/njordhov/docker-shadow-cljs:v0.3
     build: . 
     networks:
       - server
@@ -37,7 +37,7 @@ services:
       - 'test -f shadow-cljs.edn || npx shadow-cljs init && npx shadow-cljs server'      
   
   shadow-cljs:
-    image: ghcr.io/njordhov/docker-shadow-cljs:v0.2
+    image: ghcr.io/njordhov/docker-shadow-cljs:v0.3
     build: .
     depends_on:
       server:
