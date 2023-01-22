@@ -1,9 +1,9 @@
-version: "3.7"
+version: "3.9"
 
 volumes:
   m2:
-  .cpcache:
-  .shadow-cljs:
+  cpcache:
+  shadow-cljs:
 
 networks:
   server:
@@ -25,11 +25,15 @@ services:
       - "9090:9090"
       - "9099:9099"
       - "8080:8080"
+      - "8090:8090"
+    environment:
+      - CLJ_CACHE=/tmp/.cpcache
+      - XDG_CACHE=/tmp/.cpcache
     volumes:
       - .:/home
       - m2:/root/.m2
-      - .cpcache:/tmp/.cpcache
-      - .shadow-cljs:/tmp/.shadow-cljs
+      - cpcache:/tmp/.cpcache
+      - shadow-cljs:/tmp/.shadow-cljs
     working_dir: /home
     entrypoint: 
       - /bin/bash 
@@ -46,11 +50,14 @@ services:
       - server
     network_mode: service:server
     working_dir: /home
+    environment:
+      - CLJ_CACHE=/tmp/.cpcache
+      - XDG_CACHE=/tmp/.cpcache
     volumes:
       - .:/home
       - m2:/root/.m2
-      - .cpcache:/tmp/.cpcache
-      - .shadow-cljs:/tmp/.shadow-cljs
+      - cpcache:/tmp/.cpcache
+      - shadow-cljs:/tmp/.shadow-cljs
     entrypoint: 
       - npx
       - shadow-cljs

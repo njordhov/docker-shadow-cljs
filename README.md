@@ -22,11 +22,13 @@ Develop [ClojureScript](https://clojurescript.org/) projects with [Shadow CLJS](
 
 You can provide any ClojureScript project with these benefits by copying the [docker-compose.yml](docker-compose.yml) configuration file into its repository.
 
-## Prerequisites
+## Requirements
 
 [![Docker](https://badgen.net/badge/icon/docker?icon=docker&label)](https://https://docker.com/)
 
 [Docker](https://https://docker.com/) must be installed and running on your machine. Follow the instructions at [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/) to install Docker.
+
+That's all. Neither _Java_, _npm_, nor _node.js_ have to be installed on your system, as they're all covered by the Docker image.
 
 ## Quick Start
 
@@ -35,7 +37,7 @@ Clone this repository and navigate to the directory.
 Start a Shadow CLJS server in a Docker container:
 
 ```bash
-docker compose run --rm server
+docker compose run --rm --service-ports server
 ```
 
 Wait for the server to start, then [open the Shadow CLJS monitor](http://localhost:9630/builds) in a web browser:
@@ -91,6 +93,14 @@ For example, this will start a REPL:
 
 ```bash
 docker compose run -it --rm shadow-cljs cljs-repl script
+```
+
+### Open a Shell 
+
+To open a shell prompt in the running container started using _compose_, use the following command:
+
+```bash
+docker compose exec -it server sh
 ```
 
 ## Using Docker
