@@ -1,16 +1,29 @@
 ;; shadow-cljs configuration
 {:deps {:aliases [:shadow]}
+ :dev-http {8080 "public"}
  :nrepl {:port 9090}
  :socket-repl {:port 9099}
  :builds
- {:script 
+ {:frontend
+  {:target :browser
+   :modules {:main {:init-fn frontend.app/init}}}
+  :script 
   {:target :node-script
    :devtools {:autoload true
               :ignore-warnings false}
    :main script.core/main
    :dev {:output-to "out/script.js"}
    :output-to "script.js"}
-  :test
+  :test-frontend
+  {:target :browser-test
+   :test-dir  "public/js/test"
+   :output-to "out/tests.js"
+   :runner-ns shadow.test.browser
+   :devtools  {:http-port 8090
+               :http-root "public/js/test"}
+   :autorun true}
+  :test-script
   {:target :node-test
+   :ns-regexp "-nodetest$"
    :output-to "out/node-tests.js"
    :autorun true}}}
